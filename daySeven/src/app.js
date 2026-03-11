@@ -6,6 +6,14 @@ const noteModel = require("./models/notes.model");
 app.use(express.json());
 
 /* get/notes */
+app.get("/notes", async (req, res) => {
+  const notes = await noteModel.find();
+
+  res.status(200).json({
+    message: "Note fetched successfully",
+    notes,
+  });
+});
 
 /* post/notes */
 app.post("/notes", async (req, res) => {
