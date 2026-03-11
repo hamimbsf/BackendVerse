@@ -1,0 +1,7 @@
+Cluster => is the combination of storage and processor
+
+Database => use for storing data
+
+hamimbsf
+
+gQZWRUnKz8vAm46p

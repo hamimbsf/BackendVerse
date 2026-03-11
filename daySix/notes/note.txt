@@ -1,0 +1,6 @@
+Cluster => Cluster is the combination of Storage and Processor
+Database =>
+
+Cloud => MongoDB Atlas
+
+
