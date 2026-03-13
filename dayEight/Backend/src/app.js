@@ -1,5 +1,5 @@
 const express = require("express");
-const path = require("path");
+// const path = require("path");
 const noteModel = require("./models/note.model");
 const cors = require("cors");
 
@@ -59,8 +59,8 @@ app.delete("/notes/:id", async (req, res) => {
   });
 });
 
-app.use("*name", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "/public/index.html"));
-});
+// app.use("*name", (req, res) => {
+//   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
+// });
 
 module.exports = app;
