@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const noteModel = require("./models/note.model");
 const cors = require("cors");
 
@@ -7,6 +8,7 @@ const app = express();
 /* middleware */
 app.use(cors());
 app.use(express.json());
+app.use(express.static("./public"));
 
 /* Creating note -> /notes */
 app.post("/notes", async (req, res) => {
@@ -55,6 +57,10 @@ app.delete("/notes/:id", async (req, res) => {
   res.status(200).json({
     message: "Note deleted successfully",
   });
+});
+
+app.use("*name", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "/public/index.html"));
 });
 
 module.exports = app;

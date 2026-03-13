@@ -1,15 +1,37 @@
 import "./NoteCard.css";
+import { useState } from "react";
 
-const NoteCard = ({ note }) => {
+const NoteCard = ({ note, handleDeleteNote, handleUpdateNote }) => {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [description, setDescription] = useState(note.description);
+
+  const handleUpdate = () => {
+    handleUpdateNote(note._id, { description });
+    setIsEditing(false);
+  };
+
   return (
     <div className="note-card">
-      <h2 className="note-title">{note.title}</h2>
-      <p className="note-description">{note.description}</p>
+      {isEditing ? (
+        <>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
-      <div className="note-footer">
-        <button className="edit-btn">Edit</button>
-        <button className="delete-btn">Delete</button>
-      </div>
+          <button onClick={handleUpdate}>Save</button>
+        </>
+      ) : (
+        <>
+          <h3>{note.title}</h3>
+          <p>{note.description}</p>
+
+          <button onClick={() => setIsEditing(true)}>Edit</button>
+
+          <button onClick={() => handleDeleteNote(note._id)}>Delete</button>
+        </>
+      )}
     </div>
   );
 };
