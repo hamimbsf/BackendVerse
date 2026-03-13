@@ -7,7 +7,7 @@ const App = () => {
   const [notes, setnotes] = useState([]);
 
   const fetchData = () => {
-    axios.get("http://localhost:3000/notes").then((res) => {
+    axios.get("https://backendverse.onrender.com/notes").then((res) => {
       setnotes(res.data.notes);
     });
   };
@@ -23,7 +23,7 @@ const App = () => {
     console.log(title.value, description.value);
 
     axios
-      .post("http://localhost:3000/notes", {
+      .post("https://backendverse.onrender.com/notes", {
         title: title.value,
         description: description.value,
       })
@@ -36,15 +36,17 @@ const App = () => {
   const handleDeleteNote = (noteId) => {
     console.log(noteId);
 
-    axios.delete(`http://localhost:3000/notes/${noteId}`).then((res) => {
-      console.log(res.data);
-      fetchData();
-    });
+    axios
+      .delete(`https://backendverse.onrender.com/notes/${noteId}`)
+      .then((res) => {
+        console.log(res.data);
+        fetchData();
+      });
   };
 
   const handleUpdateNote = (noteId, updatedNote) => {
     axios
-      .patch(`http://localhost:3000/notes/${noteId}`, updatedNote)
+      .patch(`https://backendverse.onrender.com/notes/${noteId}`, updatedNote)
       .then((res) => {
         console.log(res.data);
         fetchData(); // reload notes
