@@ -6,6 +6,14 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route
+          path="/"
+          element={
+            <h1 className=" h-screen w-screen text-center bg-black text-white">
+              Welcome to the home
+            </h1>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
