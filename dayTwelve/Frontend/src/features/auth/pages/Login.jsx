@@ -1,27 +1,21 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useAuth } from "../hooks/useAuth";
+import { useState } from "react";
 
 const Login = () => {
+  const { user, loading, handleLogin } = useAuth();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const { handleLogin, loading } = useAuth();
-
-  const navigate = useNavigate();
-
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    handleLogin(username, password).then((res) => {
-      console.log(res);
-      navigate("/");
-    });
+    await handleLogin(username, password);
+
+    console.log("User logged in");
   };
+
   return (
     <div className="h-screen flex items-center justify-center bg-black">
       <div className="w-full max-w-sm">

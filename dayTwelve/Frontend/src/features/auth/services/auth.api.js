@@ -5,38 +5,26 @@ const api = axios.create({
   withCredentials: true,
 });
 
-export const register = async (username, email, password) => {
-  try {
-    const response = await api.post("/register", {
-      username,
-      email,
-      password,
-    });
-    return response.data;
-  } catch (err) {
-    throw err?.response?.data || { message: "Network error" };
-  }
+export const login = async (username, password) => {
+  const response = await api.post("/login", {
+    username,
+    password,
+  });
+  return response.data;
 };
 
-export const login = async (username, password) => {
-  try {
-    const response = await api.post("/login", {
-      username,
-      password,
-    });
+export const register = async (username, email, password) => {
+  const response = await api.post("/register", {
+    username,
+    email,
+    password,
+  });
 
-    return response.data;
-  } catch (err) {
-    throw err?.response?.data || { message: "Network error" };
-  }
+  return response.data;
 };
 
 export const getMe = async () => {
-  try {
-    const response = await api.get("/get-me");
+  const response = await api.get("/get-me");
 
-    return response.data;
-  } catch (err) {
-    throw err?.response?.data || { message: "Network error" };
-  }
+  return response.data;
 };

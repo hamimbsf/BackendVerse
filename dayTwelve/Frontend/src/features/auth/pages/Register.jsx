@@ -1,31 +1,10 @@
-import axios from "axios";
-import { useState } from "react";
 import { Link } from "react-router";
-const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
+const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, email, password);
-
-    axios
-      .post(
-        "http://localhost:3000/api/auth/register",
-        {
-          username,
-          email,
-          password,
-        },
-        {
-          withCredentials: true,
-        },
-      )
-      .then((res) => {
-        console.log(res.data);
-      });
   };
+
   return (
     <div className="h-screen flex items-center justify-center bg-black">
       <div className="w-full max-w-sm">
@@ -41,7 +20,7 @@ const Register = () => {
             <input
               type="text"
               name="username"
-              onInput={(e) => setUsername(e.target.value)}
+              // onInput={(e) => setUsername(e.target.value)}
               placeholder="Username"
               className="bg-[#1a1a1a] border border-gray-700 text-white placeholder-gray-400 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
@@ -49,7 +28,7 @@ const Register = () => {
             <input
               type="email"
               name="email"
-              onInput={(e) => setEmail(e.target.value)}
+              // onInput={(e) => setEmail(e.target.value)}
               placeholder="Email"
               className="bg-[#1a1a1a] border border-gray-700 text-white placeholder-gray-400 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
@@ -57,7 +36,7 @@ const Register = () => {
             <input
               type="password"
               name="password"
-              onInput={(e) => setPassword(e.target.value)}
+              // onInput={(e) => setPassword(e.target.value)}
               placeholder="Password"
               className="bg-[#1a1a1a] border border-gray-700 text-white placeholder-gray-400 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
