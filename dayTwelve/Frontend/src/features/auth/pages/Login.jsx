@@ -1,9 +1,11 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
 
 const Login = () => {
   const { user, loading, handleLogin } = useAuth();
+
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,8 +15,17 @@ const Login = () => {
 
     await handleLogin(username, password);
 
+    navigate("/");
     console.log("User logged in");
   };
+
+  if (loading) {
+    return (
+      <main className=" bg-black text-white flex items-center justify-center">
+        <h1>Loading...</h1>
+      </main>
+    );
+  }
 
   return (
     <div className="h-screen flex items-center justify-center bg-black">

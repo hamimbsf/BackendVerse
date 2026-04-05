@@ -102,9 +102,35 @@ const likePostController = async (req, res) => {
   });
 };
 
+const getfeedController = async (req, res) => {
+  const user = req.user;
+
+  const posts = await postModel.find().populate("user").lean();
+
+  const updatedPosts = await Promise.all(
+    posts.map(async (post) => {
+      const isLiked = await likeModel.findOne({
+        user: user.username,
+        post: post._id,
+      });
+
+      return {
+        ...post,
+        isLiked: !!isLiked,
+      };
+    }),
+  );
+
+  res.status(200).json({
+    message: "post fetched successfully",
+    posts: updatedPosts,
+  });
+};
+
 module.exports = {
   createPostController,
   getPostController,
   getPostDetailsController,
   likePostController,
+  getfeedController,
 };

@@ -18,11 +18,12 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "password is required"],
+    select: false,
   },
   bio: String,
   profileImage: {
     type: String,
-    default: "https://ik.imagekit.io/hamimbsf/l60Hf.png",
+    default: "https://ik.imagekit.io/hamimbsf/profile-42914_640.png",
   },
 });
 
